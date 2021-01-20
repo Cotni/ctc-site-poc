@@ -1,0 +1,64 @@
+<table>
+    <tr>
+        <td>Track name</td>
+        <td><input [(ngModel)]='track.name' placeholder="Course Trackway" /></td>
+    </tr>
+
+    <tr *ngFor="let author of track.authors; let i = index">
+        <td *ngIf="i == 0; else emptyBlock">Author(s)</td>
+        <ng-template #emptyBlock><td></td></ng-template>
+        <td>
+            <!-- Field for each author -->
+            <input [(ngModel)]='track.authors[i]' placeholder='Videogames1000' name="authorfield{{i}}"/>
+
+            <!-- Removes an author; can only be done if multiple exist-->
+            <button *ngIf="track.authors.length > 1" (click)='track.authors.splice(i, 1)'>
+                Remove
+            </button>
+
+            <!-- Add an author -->
+            <button *ngIf="track.authors.length - 1 == i" (click)='track.authors.push("")'>
+                Add
+            </button>
+        </td>
+        
+    </tr>
+
+    <tr>
+        <td>Version number</td>
+        <td><input [(ngModel)]='track.version' placeholder="1.1" /></td>
+    </tr>
+
+    <tr>
+        <td>Download link</td>
+        <td><input [(ngModel)]='track.dlLink' placeholder='Please include the "https://"' /></td>
+    </tr>
+
+    <tr>
+        <td>Track slot</td>
+        <td><select [(ngModel)]='track.slot' name="slot">
+            <option *ngFor="let slot of slots" [value]="slot.id">{{slot.name}}</option>
+        </select></td>
+    </tr>
+
+    <tr>
+        <td>Music slot</td>
+        <td><select [(ngModel)]='track.music' name="music">
+            <option *ngFor="let slot of musics" [value]="slot.id">{{slot.name}}</option>
+        </select></td>
+    </tr>
+
+    <tr>
+        <td>Notes</td>
+        <td><textarea [(ngModel)]='track.submissionNotes' placeholder="Any other information you might want us to know, such as what could be subject to change">
+
+        </textarea></td>
+    </tr>
+
+</table>
+
+
+<!-- (click) passes input value to add() and then clears the input -->
+<button (click)="submitTrack();">
+    Submit
+</button>

@@ -1,0 +1,17 @@
+<table>
+    <tr>
+        <th>Track</th>
+        <th>Download</th>
+        <th>Slot</th>
+        <th>Notes</th>
+        <th>Issue Reports</th>
+    </tr>
+    <tr *ngFor="let track of tracklist">
+        <td><div class="trackname">{{track.name}}</div>by {{getAuthors(track)}}</td>
+        <td><a href="{{track.dlLink}}">{{track.version}}</a></td>
+        <td>Luigi Circuit</td>
+        <td>{{track.submissionNotes}}</td>
+        <td>wip</td>
+    </tr>
+</table>
+<app-submit-track></app-submit-track>
